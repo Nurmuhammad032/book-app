@@ -1,0 +1,32 @@
+@import url("./fonts.css");
+@import url("./variables.css");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  outline: none;
+  border: none;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--dark-white) url("../assets/images/background-shape.png")
+    no-repeat fixed left;
+  background-size: contain;
+  font-family: "mulish-regular", sans-serif, system-ui, -apple-system,
+    "Segoe UI", "Open Sans", "Helvetica Neue";
+}
+
+@media screen and (max-width: 992px) {
+  body {
+    background: var(--dark-white);
+  }
+}
+
+.container {
+  max-width: 1400px;
+  padding: 0 1rem;
+  margin: 0 auto;
+}
