@@ -4,6 +4,7 @@ import { IconLogo } from "./icons";
 import { Avatar, Stack } from "@mui/material";
 import Search from "./Search";
 import { lg } from "../breakpoints";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -11,7 +12,7 @@ const Navbar = () => {
       <div className="container">
         <Wrapper>
           <Stack direction={"row"} spacing={2} alignItems={"center"}>
-            <LogoWrapper>
+            <LogoWrapper to={"/"}>
               <IconLogo />
               <LogoText>
                 Books <span>List</span>
@@ -43,7 +44,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
 `;
 
-const LogoWrapper = styled.div`
+const LogoWrapper = styled(Link)`
   display: flex;
   flex-shrink: 0;
   align-items: center;
