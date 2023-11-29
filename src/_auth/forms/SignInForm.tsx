@@ -1,6 +1,5 @@
 import { ButtonWrapper, Title } from "../auth.styled";
-import { Box } from "@mui/material";
-import { BlueButton } from "../../components/button";
+import { Box, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { TextInput } from "../../components/input";
 
@@ -18,19 +17,23 @@ const SignInForm = () => {
         }}
       >
         <TextInput
+          disabled
           error={""}
           name="username"
           label="Your username"
           placeholder="Username"
         />
         <TextInput
+          disabled
           error={""}
           name="username"
           label="Your username"
           placeholder="Username"
         />
         <ButtonWrapper>
-          <BlueButton isLoading={true}>Submit</BlueButton>
+          <Button fullWidth variant="contained" color="error">
+            Sign in not working..
+          </Button>
           <p>
             Already signed up?{" "}
             <Link to={"/sign-up"} style={{ color: "var(--primary-blue)" }}>

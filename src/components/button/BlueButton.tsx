@@ -1,5 +1,6 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import styled from "styled-components";
+import CircularProgress from "@mui/material/CircularProgress";
 import { IButtonProps } from "./types";
 import { BaseButton } from "./base.styled";
 
@@ -10,20 +11,32 @@ const BlueButton: React.FC<IButtonProps> = ({
   ...buttonProps
 }) => {
   return (
-    <Button {...buttonProps} icon>
-      {icon && <>{icon}</>}
-      {children}
+    <Button {...buttonProps} disabled={isLoading}>
+      {isLoading ? (
+        <CircularProgress color="inherit" size={"20px"} />
+      ) : (
+        <>
+          {icon && <>{icon}</>}
+          {children}
+        </>
+      )}
     </Button>
   );
 };
 
-const Button = styled(BaseButton)<{ icon: ReactNode | undefined }>`
+const Button = styled(BaseButton)`
   background-color: var(--primary-blue);
   color: var(--light-white);
-  display: ${(props) => props.icon && "flex"};
+  display: flex;
   justify-content: center;
   gap: 0 12px;
   align-items: center;
+
+  &:disabled {
+    opacity: 0.5;
+    user-select: none;
+    pointer-events: none;
+  }
 
   & > * {
     flex-shrink: 0;

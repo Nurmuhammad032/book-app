@@ -12,9 +12,9 @@ const IconPlus = () => {
       <path
         d="M8.00004 3.83331V13.1666M3.33337 8.49998H12.6667"
         stroke="currentColor"
-        stroke-width="1.6"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

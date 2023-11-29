@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { IconLogo } from "./icons";
 import { Avatar, Stack } from "@mui/material";
 import Search from "./Search";
 import { lg } from "../breakpoints";
 import { Link } from "react-router-dom";
+import Context, { ContextProps } from "../context/GlobalContext";
 
 const Navbar = () => {
+  const { userInfo } = useContext(Context) as ContextProps;
+
   return (
     <Header>
       <div className="container">
@@ -22,9 +25,17 @@ const Navbar = () => {
               <Search />
             </SearchWrapper>
           </Stack>
-          <div>
+          <Stack direction={"row"} alignItems={"center"} spacing={2}>
+            <p
+              style={{
+                color: "var(--primary-blue)",
+                fontFamily: "mulish-semibold",
+              }}
+            >
+              {userInfo?.name}
+            </p>
             <Avatar alt="Remy Sharp" sx={{ width: 30, height: 30 }} />
-          </div>
+          </Stack>
         </Wrapper>
         <PhoneSearch>
           <Search />

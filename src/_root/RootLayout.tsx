@@ -1,17 +1,22 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
+import { useContext } from "react";
+import { Navigate, Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import Context, { ContextProps } from "../context/GlobalContext";
 
 const RootLayout = () => {
+  const { isAuthenticated } = useContext(Context) as ContextProps;
+
+  if (!isAuthenticated) {
+    return <Navigate to="/sign-up" />;
+  }
+
   return (
     <main>
-      <div className="w-full md:flex">
-        <Navbar />
+      <Navbar />
 
-        <section className="flex flex-1 h-full">
-          <Outlet />
-        </section>
-      </div>
+      <section className="">
+        <Outlet />
+      </section>
     </main>
   );
 };
