@@ -5,9 +5,8 @@ import { IconPlus } from "../../components/icons";
 import BookCard from "../../components/BookCard";
 import { xl } from "../../breakpoints";
 import { useContext, useEffect, useState } from "react";
-import { CreateBookDialog, EditBookDialog } from "../../components/dialog";
+import { CreateBookDialog } from "../../components/dialog";
 import Context, { ContextProps } from "../../context/GlobalContext";
-import Loader from "../../components/Loader";
 
 const Home = () => {
   const [openCreateDialog, setOpenCreateDialog] = useState(false);
@@ -41,7 +40,11 @@ const Home = () => {
             mb={{ sm: 0 }}
             sx={{ color: "var(--primary-blue)", flexShrink: 0, mb: 1 }}
           >
-            You've got 7 book
+            {books?.length ? (
+              <span>{`You've got ${books.length} book`}</span>
+            ) : (
+              <span>You don't have a book</span>
+            )}
           </Typography>
           <ButtonWrapper>
             <BlueButton
@@ -67,7 +70,7 @@ const Home = () => {
               />
             ))
           ) : (
-            <p>Nothing found</p>
+            <p style={{ color: "var(--primary-blue)" }}>Nothing found.</p>
           )}
         </BookWrapper>
       </div>
@@ -75,7 +78,7 @@ const Home = () => {
         open={openCreateDialog}
         close={handleCreateDialogClose}
       />
-      <EditBookDialog />
+      {/* <EditBookDialog /> */}
     </Section>
   );
 };
