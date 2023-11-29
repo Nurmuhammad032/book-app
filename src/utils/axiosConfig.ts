@@ -15,7 +15,6 @@ const getAuthDetails = () => {
   };
 };
 
-// Set the default Authorization header using the getAuthDetails function
 apiFetch.interceptors.request.use((config) => {
   const userKey = getAuthDetails().key;
   const userSecret = getAuthDetails().secret;
@@ -26,9 +25,10 @@ apiFetch.interceptors.request.use((config) => {
     if (data) {
       bodyString = JSON.stringify(data);
     }
-    const stringToSign = `${method?.toLocaleUpperCase()}${url}${bodyString}2003`;
+    const stringToSign = `${method?.toLocaleUpperCase()}${url}${bodyString}${userSecret}`;
 
     const sign = CryptoJS.MD5(stringToSign).toString();
+
     config.headers["Key"] = userKey;
     config.headers["Sign"] = sign;
   }

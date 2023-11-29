@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useContext, useState } from "react";
 import { IDialogProps } from "./types";
 import { Dialog, Stack } from "@mui/material";
 import styled from "styled-components";
@@ -10,8 +10,10 @@ import { isValidISBNCode } from "../../utils/validateIsbn";
 import { apiFetch } from "../../utils/axiosConfig";
 import { AxiosError } from "axios";
 import { toast } from "react-toastify";
+import Context, { ContextProps } from "../../context/GlobalContext";
 
 const CreateBookDialog: FC<IDialogProps> = ({ open, close }) => {
+  const { getAllBooks } = useContext(Context) as ContextProps;
   const [isbn, setIsbn] = useState("");
   const [error, setError] = useState("");
   const [isPending, setIsPending] = useState(false);
@@ -42,6 +44,7 @@ const CreateBookDialog: FC<IDialogProps> = ({ open, close }) => {
       const res = await apiFetch.post("/books", {
         isbn,
       });
+      await getAllBooks();
       toast.success(`${res.data.data.title} - book is successfully created!`);
       setIsbn("");
       close();

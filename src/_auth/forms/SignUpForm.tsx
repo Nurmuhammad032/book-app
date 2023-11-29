@@ -5,15 +5,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { TextInput } from "../../components/input";
 import useForm from "../../hooks/useForm";
 import useError from "../../hooks/useValidation";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { apiFetch } from "../../utils/axiosConfig";
 import { IUser } from "../../types/userInfo";
 import { AxiosError } from "axios";
 import { IResponse } from "../../types/response";
+import Context, { ContextProps } from "../../context/GlobalContext";
 
 const SignUpForm = () => {
   const navigate = useNavigate();
+  const { dispatch } = useContext(Context) as ContextProps;
   const [isPending, setIsPending] = useState(false);
   const { form, changeHandler } = useForm({
     name: "",
@@ -73,10 +75,12 @@ const SignUpForm = () => {
       if (res.data.isOk) {
         localStorage.setItem("userKey", res.data.data.key);
         localStorage.setItem("userSecret", res.data.data.secret);
+        dispatch({ type: "check_auth", payload: true });
         navigate("/");
       }
     } catch (error) {
       const err = error as AxiosError<{ message: string }>;
+      dispatch({ type: "check_auth", payload: false });
       if (err.response?.data) {
         toast.error(err.response.data.message);
       }

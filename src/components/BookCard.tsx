@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { IconPencil, IconTrash } from "./icons";
 import { lg } from "../breakpoints";
-import { Button, Chip, CircularProgress, Stack } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import { FC, useContext, useState } from "react";
 import { IBook } from "../types/book";
 import { allStatus } from "../utils/constants";
