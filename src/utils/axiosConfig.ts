@@ -25,9 +25,13 @@ apiFetch.interceptors.request.use((config) => {
     if (data) {
       bodyString = JSON.stringify(data);
     }
-    const stringToSign = `${method?.toLocaleUpperCase()}${url}${bodyString}${userSecret}`;
+
+    const stringToSign = `${method?.toUpperCase()}${url}${bodyString}${userSecret}`;
 
     const sign = CryptoJS.MD5(stringToSign).toString();
+
+    console.log(stringToSign);
+    console.log(sign);
 
     config.headers["Key"] = userKey;
     config.headers["Sign"] = sign;

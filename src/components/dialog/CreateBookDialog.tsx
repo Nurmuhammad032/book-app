@@ -20,14 +20,17 @@ const CreateBookDialog: FC<IDialogProps> = ({ open, close }) => {
 
   const validateIsbnInput = () => {
     setError("");
+    let validationError = false;
 
     if (!isbn.length) {
+      validationError = true;
       setError("Isbn is required");
     } else if (!isValidISBNCode(isbn)) {
-      setError("Invalid isbn value");
+      setError("Isbn is not valid");
+      validationError = true;
     }
 
-    if (error) {
+    if (validationError) {
       return true;
     }
 

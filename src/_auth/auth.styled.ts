@@ -19,7 +19,6 @@ export const ButtonWrapper = styled.div`
   ${lg} {
     margin-top: 15px;
   }
-
   p {
     text-align: center;
     font-size: 14px;
